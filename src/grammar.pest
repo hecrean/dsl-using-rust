@@ -1,0 +1,58 @@
+
+unary_operator = { increment | decrement | unary_plus | unary_minus | logical_negation | bistwise_negation | address | indirection}
+	increment = { "++"}
+	decrement = { "--"}
+	unary_plus = { "+"}
+	unary_minus = { "-"}
+	logical_negation = { "!"}
+	bistwise_negation = { "~"}
+	address = {"&"}
+	indirection = {"*"}
+
+binary_operator = { multiply | divide | remainder | add | subtract }
+	multiply = {"*"}
+	divide = {"/"}
+	remainder = {"%"}
+	add = {"+"}
+	subtract = {"-"}
+	// Bitwise left and right shift operators << >>
+	// Relational operators < > <= >=
+	// Equality and inequality operators == !=
+	// Bitwise AND operator &
+	// Bitwise exclusive OR operator ^
+	// Bitwise inclusive OR operator |
+	// Logical AND operator &&
+	// Logical OR operator ||
+	// Array subscripting operator [ ]
+	// Comma operator ,
+
+data = {  int | bool }
+	int    = @{ "0" | ASCII_NONZERO_DIGIT ~ ASCII_DIGIT* }
+	bool = @{ "true" | "false" }
+
+
+operand = _{ data | "(" ~ expression ~ ")" }
+
+unary_expression = {  operand ~ unary_operator  }
+
+binary_expression = { operand ~ (binary_operator ~ operand)* }
+
+// conditional_expression = {}
+// cast_expression = {}
+// compound_literal_expression = {}
+// primary_expressions = {}
+// function_call_expressions = {}
+// member_expressions = {}
+
+expression = { binary_expression }
+
+
+program = _{ SOI ~ expression ~ EOI }
+
+
+
+
+
+
+
+
